@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 🧭 Sidebar -->
+    <aside id="sidebar">
+      <h3>👥 Users</h3>
+      <ul id="user-list"></ul>
+      <button id="theme-toggle">🌗 Theme</button>
+    </aside>
+
+    <!-- 💬 Main Chat Area -->
+    <main class="chat-container">
+      <h2 id="room-title">💬 Chat Room</h2>
+      <button id="info-toggle">ℹ️ Room Info</button>
+      <div id="room-info" class="hidden">
+        <p><strong>Topic:</strong> <span id="room-topic"></span></p>
+        <p><strong>Privacy:</strong> <span id="room-privacy"></span></p>
+        <p><strong>Users:</strong> <span id="room-users-count"></span></p>
+      </div>
+
+      <!-- 🔑 Join Interface -->
+      <div id="join-area">
+        <input type="text" id="username" placeholder="Enter your name" />
+        <label>Choose your avatar:</label>
+        <div id="avatar-grid">
+          <span>😄</span><span>👩‍💻</span><span>🤖</span><span>🐱</span>
+          <span>🐶</span><span>🧙‍♀️</span><span>🐼</span><span>🦄</span>
+        </div>
+        <input type="text" id="topic" placeholder="Room topic (optional)" />
+        <input type="password" id="room-password" placeholder="Room password (if needed)" />
+        <button id="join-btn">Join Room</button>
+      </div>
+
+      <!-- 💬 Chat Interface -->
+      <div id="chat-area" style="display: none;">
+        <p id="participants-count"></p>
+        <div id="messages"></div>
+        <p id="typing-indicator"></p>
+
+        <!-- Message Input -->
+        <div class="input-row">
+          <textarea id="message-input" placeholder="Type a message..." rows="2"></textarea>
+          <button onclick="sendMessage()">📨</button>
+        </div>
+
+        <!-- Uploads -->
+        <div class="input-row">
+          <input type="file" id="file-upload" accept="image/*,.pdf,.docx,.xlsx" />
+          <button onclick="openCamera()">📷</button>
+        </div>
+
+        <!-- Camera View -->
+        <video id="camera" autoplay style="display: none;"></video>
+        <button id="capture-btn" style="display:none;" onclick="captureImage()">📸 Capture</button>
+        <canvas id="canvas" style="display: none;"></canvas>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
